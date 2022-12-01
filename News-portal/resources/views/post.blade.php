@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Whooops</title>
+    <title>News portal</title>
     <link href="/app.css" rel="stylesheet">
 </head>
 

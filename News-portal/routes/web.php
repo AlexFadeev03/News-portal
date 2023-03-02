@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\NewsPost;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+//    \Illuminate\Support\Facades\DB::listen(function ($query) {
+//        logger($query->sql);
+//    });
+
     return view('posts', [
-        'posts' => NewsPost::with('category')->get(),
+        'posts' => NewsPost::latest()->get(),
     ]);
 });
 
@@ -29,6 +34,12 @@ Route::get('posts/{post:slug}', function (NewsPost $post) {
 
 Route::get('categories/{category:slug}', function(Category $category){
     return view('posts', [
-        'posts' => $category->news_posts()
+        'posts' => $category->news_posts
+    ]);
+});
+
+Route::get('authors/{author:username}', function(User $author){
+    return view('posts', [
+        'posts' => $author->news_posts
     ]);
 });

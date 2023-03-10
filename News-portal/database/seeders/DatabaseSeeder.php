@@ -21,38 +21,43 @@ class DatabaseSeeder extends Seeder
 //        NewsPost::truncate();
 //        Category::truncate();
 
-        $user = User::factory()->create([
-            'name' => 'Jack Smith',
-        ]);
-
-        NewsPost::factory(5)->create([
-            'user_id' => $user->id,
-        ]);
-        $user = User::factory()->create([
-            'name' => 'John Doe',
-        ]);
-
-        NewsPost::factory(5)->create([
-            'user_id' => $user->id,
-        ]);
-        $user = User::factory()->create([
-            'name' => 'Alessandro Del Piero',
-        ]);
-
-        NewsPost::factory(5)->create([
-            'user_id' => $user->id,
-        ]);
+//        $user = User::factory()->create([
+//            'name' => 'Jack Smith',
+//        ]);
+//
+//        NewsPost::factory(5)->create([
+//            'user_id' => $user->id,
+//        ]);
+//        $user = User::factory()->create([
+//            'name' => 'John Doe',
+//        ]);
+//
+//        NewsPost::factory(5)->create([
+//            'user_id' => $user->id,
+//        ]);
+//        $user = User::factory()->create([
+//            'name' => 'Alessandro Del Piero',
+//        ]);
+//
+//        NewsPost::factory(5)->create([
+//            'user_id' => $user->id,
+//        ]);
 
 
 
 
 
 //        $category = Category::factory()->create([
-//            'name' => 'Laravel',
+//            'name' => 'SMRLX',
 //        ]);
-        NewsPost::factory(5)->create([
-            'category_id' => 11,
-        ]);
+//        NewsPost::factory(5)->create([
+//            'category_id' => $category->id,
+//        ]);
+
+        NewsPost::factory(1)->create();
+
+
+
 
 
 

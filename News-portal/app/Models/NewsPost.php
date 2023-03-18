@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class NewsPost extends Model
 {
     use HasFactory;
-    protected $guarded = [];
 
     protected $with = ['author', 'category'];
 
@@ -35,5 +34,9 @@ class NewsPost extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

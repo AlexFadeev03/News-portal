@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\NewsPost;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -54,7 +55,11 @@ class DatabaseSeeder extends Seeder
 //            'category_id' => $category->id,
 //        ]);
 
-        NewsPost::factory(1)->create();
+        Comment::factory(5)->create([
+            'news_post_id' => 2,
+        ]);
+
+//        NewsPost::factory(30)->create();
 
 
 

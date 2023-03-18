@@ -24,7 +24,7 @@ class NewsPostFactory extends Factory
             'title' => fake()->sentence(),
             'slug' => fake()->slug(),
             'excerpt' => '<p>' . implode('</p><p>',fake()->paragraphs(2)) . '</p>',
-            'body' => '<p>' . implode('</p><p>',fake()->paragraphs(6)) . '</p>'
+            'body' => '<p>' . implode('</p><p>',fake()->paragraphs(6)) . '</p>',
 
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MailchimpNewsletter;
 use App\Services\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -22,6 +23,6 @@ public function __invoke(Newsletter $newsletter)
             ]);
         }
 
-        return redirect('/')->with('success', 'Yiu are now signed to our newsletter!');
+        return redirect('/')->with('success', 'You are now signed to our newsletter!');
     }
 }

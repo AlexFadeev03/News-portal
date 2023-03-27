@@ -21,6 +21,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $guarded = ['password_confirmation'];
 
     /**
      * The attributes that should be cast.

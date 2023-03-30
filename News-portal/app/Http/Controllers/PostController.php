@@ -40,8 +40,11 @@ class PostController extends Controller
 
     public function store()
     {
+//        $pass = request()->file('thumbnail')->store('public/thumbnails');
+//        return 'File uploaded successfully ' . $pass;
         $attributes = request()->validate([
             'title' => 'required|min:3|max:255',
+            'thumbnail' => 'required|image',
             'slug' => 'required|min:3|max:255|unique:news_posts,slug',
             'excerpt' => 'required|min:3|max:255',
             'body' => 'required|min:3',
@@ -49,6 +52,7 @@ class PostController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = str_replace('public/', '', request()->file('thumbnail')->store('public/thumbnails'));
         NewsPost::create($attributes);
         return redirect(route('home'))->with('success', 'Post created successfully');
     }

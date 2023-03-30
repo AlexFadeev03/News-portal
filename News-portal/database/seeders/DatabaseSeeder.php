@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
 //        ]);
 
         Comment::factory(5)->create([
-            'news_post_id' => 2,
+            'news_post_id' => 34,
         ]);
 
 //        NewsPost::factory(30)->create();

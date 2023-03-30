@@ -28,10 +28,17 @@
             </a>
         </div>
 
-        <div class="mt-8 md:mt-0">
-{{--            flex items-center--}}
+        <div class="mt-8 md:mt-0 flex items-center">
+
             @auth
-                <span class="rounded-xl p-2 text-xs font-bold uppercase bg-blue-100">Welcome, {{ auth()->user()->name }}</span>
+                <x-dropdown>
+                    <x-slot name="trigger">
+                        <button class="rounded-xl p-2 text-xs font-bold uppercase bg-blue-100">Welcome, {{ auth()->user()->name }}</button>
+                    </x-slot>
+
+                    <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
+                    <x-dropdown-item href="/admin/posts/create" :active="request()->routeIs('admin_post_create')">Create post</x-dropdown-item>
+                </x-dropdown>
                 <a href="/" class="text-xs font-bold uppercase ml-6">Home page</a>
                 <form method="POST" action="/logout" class="inline ml-6 rounded-xl p-2 text-xs font-semi-bold text-blue-500">
                     @csrf

@@ -31,19 +31,32 @@
         <div class="mt-8 md:mt-0 flex items-center">
 
             @auth
-                <x-dropdown>
-                    <x-slot name="trigger">
-                        <button class="rounded-xl p-2 text-xs font-bold uppercase bg-blue-100">Welcome, {{ auth()->user()->name }}</button>
-                    </x-slot>
+                @if(auth()->user()->username == 'ADMIN')
+                    <span class="text-blue-500">{</span>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="rounded-xl p-2 text-xs font-bold uppercase bg-blue-100">Welcome, {{ auth()->user()->name }}</button>
+                        </x-slot>
 
-                    <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
-                    <x-dropdown-item href="/admin/posts/create" :active="request()->routeIs('admin_post_create')">Create post</x-dropdown-item>
-                </x-dropdown>
-                <a href="/" class="text-xs font-bold uppercase ml-6">Home page</a>
-                <form method="POST" action="/logout" class="inline ml-6 rounded-xl p-2 text-xs font-semi-bold text-blue-500">
-                    @csrf
-                    <button type="submit">Log out</button>
-                </form>
+                        <x-dropdown-item href="/" :active="request()->routeIs('home')">Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="/admin/posts/create" :active="request()->routeIs('admin_post_create')">Create post</x-dropdown-item>
+                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+
+                        <form id="logout-form" method="POST" action="/logout" class="hiden">
+                            @csrf
+                        </form>
+                    </x-dropdown>
+
+                    <span class="text-blue-500">}</span>
+                @else
+                    <span class="rounded-xl p-2 text-xs font-bold uppercase bg-blue-100">Welcome, {{ auth()->user()->name }}</span>
+                    <a href="/" class="text-xs font-bold uppercase ml-6">Home page</a>
+                    <form method="POST" action="/logout" class="inline ml-6 rounded-xl p-2 text-xs font-semi-bold text-blue-500">
+                        @csrf
+                        <button type="submit">Log out</button>
+                    </form>
+                @endif
+
             @else
                 <a href="/register" class="text-xs font-bold text-green-500">Sign in</a>
                 <a href="/login" class="text-xs font-bold text-blue-500 ml-6">Log in</a>

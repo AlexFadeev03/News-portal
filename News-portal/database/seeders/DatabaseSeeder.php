@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\NewsPost;
 use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -55,11 +56,21 @@ class DatabaseSeeder extends Seeder
 //            'category_id' => $category->id,
 //        ]);
 
+//        Comment::factory(5)->create([
+//            'news_post_id' => 34,
+//        ]);
+
+        NewsPost::factory(30)->create();
         Comment::factory(5)->create([
-            'news_post_id' => 34,
+            'news_post_id' => NewsPost::first()->id,
+        ]);
+        User::factory()->create([
+            'name' => 'Admin',
+            'username' => 'ADMIN',
+            'email' => 'admin@gmail.com',
+            'password' => '12345678',
         ]);
 
-//        NewsPost::factory(30)->create();
 
 
 

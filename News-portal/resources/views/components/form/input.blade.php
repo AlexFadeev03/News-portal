@@ -4,10 +4,8 @@
         <input type="{{ $type }}"
                name="{{ $name }}"
                id="{{ $name }}"
-               value="{{ old($name) }}"
                class="border border-blue-400 p-2 w-full rounded-xl"
-               required
-               {{ $attributes }}>
+               {{ $attributes (['value' => old($name)]) }}>
         <x-form.error :name="$name" />
     </x-form.field>
 </div>

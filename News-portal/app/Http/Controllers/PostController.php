@@ -26,34 +26,4 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
-
-    public function create()
-    {
-//        return view('posts.create', [
-//            'categories' => Category::all(),
-//            'authors' => User::all()
-//        ]);
-        return view('posts.create', [
-            'categories' => Category::all(),
-        ]);
-    }
-
-    public function store()
-    {
-//        $pass = request()->file('thumbnail')->store('public/thumbnails');
-//        return 'File uploaded successfully ' . $pass;
-        $attributes = request()->validate([
-            'title' => 'required|min:3|max:255',
-            'thumbnail' => 'required|image',
-            'slug' => 'required|min:3|max:255|unique:news_posts,slug',
-            'excerpt' => 'required|min:3|max:255',
-            'body' => 'required|min:3',
-            'category_id' => ['required', Rule::exists('categories','id')]
-        ]);
-
-        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = str_replace('public/', '', request()->file('thumbnail')->store('public/thumbnails'));
-        NewsPost::create($attributes);
-        return redirect(route('home'))->with('success', 'Post created successfully');
-    }
 }

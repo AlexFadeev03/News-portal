@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
@@ -23,6 +24,17 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
-Route::get('admin/posts/create', [PostController::class, 'create'])->name('admin_post_create')->middleware('admin');
-Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
+//Admin routes
+Route::middleware('can:admin')->group(function () {
+//    Route::resource('admin/posts', AdminPostController::class)->except('show');
+    Route::get('admin/posts/create', [AdminPostController::class, 'create'])->name('admin_post_create');
+    Route::post('admin/posts', [AdminPostController::class, 'store']);
+    Route::get('admin/posts', [AdminPostController::class, 'index'])->name('admin_posts');
+    Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->name('admin_posts_edit');
+    Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy'])->name('admin_posts_destroy');
+    Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
+});
+
+
+
 

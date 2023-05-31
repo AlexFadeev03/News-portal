@@ -6,11 +6,11 @@
             {!! $heading !!}
         </h1>
         <div class="flex mt-4">
-            <acide class="w-48">
+            <acide class="w-48 flex-shrink-0">
                 <h4 class="font-bold mb-4">Links</h4>
                 <ul>
                     <li>
-                        <a href="/" class=" font-bold {{request()->routeIs('/') ? 'text-blue-500' : 'text-blue-400'}}">Dashboard</a>
+                        <a href="/admin/posts" class=" font-bold {{request()->routeIs('admin_posts') ? 'text-blue-500' : 'text-blue-400'}}">All posts</a>
                     </li>
                     <li>
                         <a href="/admin/posts/create" class=" font-bold {{request()->routeIs('admin_post_create') ? 'text-blue-500' : 'text-blue-400'}}">Create Post</a>

@@ -12,12 +12,16 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('posts.index', [
-            'posts' => NewsPost::latest()
+        $cacheKey = 'news_posts:' . md5(serialize(request()->all()));
+
+        $posts = cache()->remember($cacheKey, 300, function () {
+            return NewsPost::latest()
                 ->filter(request(['search', 'category', 'author']))
                 ->paginate(6)
-                ->withQueryString(),
-        ]);
+                ->withQueryString();
+        });
+
+        return view('posts.index', ['posts' => $posts]);
     }
 
     public function show(NewsPost $post)
